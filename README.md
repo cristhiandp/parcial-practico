@@ -53,7 +53,7 @@ Dentro de la carpeta llamada collections estan los diferentes endpoints para usa
 | GET    | Obtener un aeropuerto por ID                                 | Obtener aeropuerto por id                    |
 | GET    | Obtener un aeropuerto por un ID que no existe                | Obtener aeropuerto por id Incorrecto         |
 | PUT    | Actualizar un aeropuerto                                     | Actualizar aeropuerto                         |
-| PUT    | Actualizar un aeropuerto con un ID que no existe             | ❌ FALTA (puedes duplicar y usar UUID)        |
+| PUT    | Actualizar un aeropuerto con un ID que no existe             | Actualizar aeropuerto (incorrecto)        |
 | DELETE | Eliminar un aeropuerto por ID                                | Borrar aeropuerto                             |
 | DELETE | Eliminar un aeropuerto con un ID que no existe               | Borrar aeropuerto (incorrecto)               |
 
