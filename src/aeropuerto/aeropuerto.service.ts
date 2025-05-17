@@ -4,8 +4,9 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Aeropuerto } from './entities/aeropuerto.entity';
+import { ActualizarAeropuertoDto, CrearAeropuertoDto } from './dtos';
 
 @Injectable()
 export class AeropuertoService {
@@ -32,7 +33,7 @@ export class AeropuertoService {
     return aeropuerto;
   }
 
-  async create(aeropuerto: Aeropuerto): Promise<Aeropuerto> {
+  async create(aeropuerto: CrearAeropuertoDto): Promise<Aeropuerto> {
     if (aeropuerto.codigo.length !== 3) {
       throw new BadRequestException(
         'El código del aeropuerto debe tener exactamente 3 caracteres',
@@ -54,7 +55,10 @@ export class AeropuertoService {
     return await this.aeropuertoRepository.save(aeropuerto);
   }
 
-  async update(id: string, aeropuerto: Aeropuerto): Promise<Aeropuerto> {
+  async update(
+    id: string,
+    aeropuerto: ActualizarAeropuertoDto,
+  ): Promise<Aeropuerto> {
     const aeropuertoExistente = await this.findOne(id);
 
     if (aeropuerto.codigo && aeropuerto.codigo.length !== 3) {
@@ -63,7 +67,9 @@ export class AeropuertoService {
       );
     }
 
-    aeropuerto.codigo = aeropuerto.codigo.toUpperCase();
+    if (aeropuerto.codigo) {
+      aeropuerto.codigo = aeropuerto.codigo?.toUpperCase();
+    }
 
     const aeropuertoActualizado = {
       ...aeropuertoExistente,
@@ -71,7 +77,7 @@ export class AeropuertoService {
       id,
     };
 
-    return await this.aeropuertoRepository.save(aeropuertoActualizado);
+    return this.aeropuertoRepository.save(aeropuertoActualizado);
   }
 
   async delete(id: string) {
@@ -81,5 +87,11 @@ export class AeropuertoService {
     }
 
     return await this.aeropuertoRepository.remove(aeropuerto);
+  }
+
+  async findAllByIds(ids: string[]): Promise<Aeropuerto[]> {
+    return this.aeropuertoRepository.find({
+      where: { id: In(ids) },
+    });
   }
 }

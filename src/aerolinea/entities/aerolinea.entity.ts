@@ -5,7 +5,6 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-import { IsDate, MaxDate } from 'class-validator';
 import { Aeropuerto } from '../../aeropuerto/entities/aeropuerto.entity';
 
 @Entity('aerolinea')
@@ -20,8 +19,6 @@ class Aerolinea {
   descripcion: string;
 
   @Column({ type: 'date' })
-  @IsDate()
-  @MaxDate(new Date())
   fechaFundacion: Date;
 
   @Column({ type: 'varchar', length: 2048 })
