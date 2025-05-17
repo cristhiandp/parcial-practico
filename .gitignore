@@ -4,6 +4,7 @@
 /build
 
 *.sqlite
+package-lock.json
 
 # Logs
 logs

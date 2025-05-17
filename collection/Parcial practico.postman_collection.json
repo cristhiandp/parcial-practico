@@ -1,0 +1,517 @@
+{
+	"info": {
+		"_postman_id": "eeac5509-4e1e-423e-993b-3e47994dbe70",
+		"name": "Parcial practico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44646279"
+	},
+	"item": [
+		{
+			"name": "Aerolinea",
+			"item": [
+				{
+					"name": "Obtener aerolineas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/airlines",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener aerolinea por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/airlines/{{aerolineaId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines",
+								"{{aerolineaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener aerolinea por (id Incorrecto)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/airlines/{{$guid}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines",
+								"{{$guid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear aerolinea",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Save ID to collection variable\", function () {",
+									"    const jsonData = pm.response.json();",
+									"",
+									"    if (jsonData && jsonData.id) {",
+									"        pm.collectionVariables.set(\"aerolineaId\", jsonData.id);",
+									"    } else {",
+									"        console.warn(\"ID not found in response\");",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"nombre3\",\n  \"descripcion\": \"Esta es una descripcion 1\",\n  \"fechaFundacion\": \"2013-06-15\",\n  \"paginaWeb\": \"https://www.fetch.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/airlines",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear aerolinea (Fecha incorrecta)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Save ID to collection variable\", function () {",
+									"    const jsonData = pm.response.json();",
+									"",
+									"    if (jsonData && jsonData.id) {",
+									"        pm.collectionVariables.set(\"aerolineaId\", jsonData.id);",
+									"    } else {",
+									"        console.warn(\"ID not found in response\");",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"nombre3\",\n  \"descripcion\": \"Esta es una descripcion 1\",\n  \"fechaFundacion\": \"2055-06-15\",\n  \"paginaWeb\": \"https://www.fetch.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/airlines",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar aerolinea",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"descripcion\": \"Esta es una descripcion 3\",\n  \"fechaFundacion\": \"2010-06-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/airlines/{{aerolineaId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines",
+								"{{aerolineaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar aerolinea (fecha incorrecta)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"descripcion\": \"Esta es una descripcion 3\",\n  \"fechaFundacion\": \"2025-06-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/airlines/{{aerolineaId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines",
+								"{{aerolineaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar aeropuerto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"nombre3\",\n  \"descripcion\": \"Esta es una descripcion 1\",\n  \"fechaFundacion\": \"2005-06-15\",\n  \"paginaWeb\": \"https://www.fetch.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/airlines/{{aerolineaId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines",
+								"{{aerolineaId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Aeropuertos",
+			"item": [
+				{
+					"name": "Obtener aeropuerto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/airports",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener aeropuerto por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/airports/{{aeropuertoId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airports",
+								"{{aeropuertoId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener aeropuerto por id Incorecto Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/airports/{{aerolineaId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airports",
+								"{{aerolineaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear aeropuerto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Save ID to collection variable\", function () {",
+									"    const jsonData = pm.response.json();",
+									"",
+									"    if (jsonData && jsonData.id) {",
+									"        pm.collectionVariables.set(\"aeropuertoId\", jsonData.id);",
+									"    } else {",
+									"        console.warn(\"ID not found in response\");",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": \"ax2\",\n  \"nombre\": \"aeropuerto 1\",\n  \"pais\": \"Colombia\",\n  \"ciudad\": \"Medellin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/airports",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear aeropuerto (codigo incorrecto)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Save ID to collection variable\", function () {",
+									"    const jsonData = pm.response.json();",
+									"",
+									"    if (jsonData && jsonData.id) {",
+									"        pm.collectionVariables.set(\"aeropuertoId\", jsonData.id);",
+									"    } else {",
+									"        console.warn(\"ID not found in response\");",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": \"ax81\",\n  \"nombre\": \"aeropuerto 1\",\n  \"pais\": \"Colombia\",\n  \"ciudad\": \"Medellin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/airports",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar aeropuerto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": \"Zx2\",\n  \"descripcion\": \"Esta es una descripcion 3\",\n  \"fechaFundacion\": \"2010-06-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/airports/{{aeropuertoId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airports",
+								"{{aeropuertoId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar aeropuerto (codigo incorrecto)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": \"Zx2+\",\n  \"descripcion\": \"Esta es una descripcion 3\",\n  \"fechaFundacion\": \"2010-06-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/airports/{{aeropuertoId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airports",
+								"{{aeropuertoId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar aeropuerto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"nombre3\",\n  \"descripcion\": \"Esta es una descripcion 1\",\n  \"fechaFundacion\": \"2005-06-15\",\n  \"paginaWeb\": \"https://www.fetch.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/airports/{{aeropuertoId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airports",
+								"{{aeropuertoId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "aerolineaId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "aeropuertoId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
