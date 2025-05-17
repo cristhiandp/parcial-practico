@@ -39,7 +39,12 @@ export class AerolineaService {
     const today = new Date();
     const foundationDate = new Date(aerolinea.fechaFundacion);
 
-    if (foundationDate > today) {
+    // Set time to midnight for both dates to compare just the dates
+    today.setHours(0, 0, 0, 0);
+    foundationDate.setHours(0, 0, 0, 0);
+
+    // Ensure date is in the past by directly comparing
+    if (foundationDate.getTime() > today.getTime()) {
       throw new BadRequestException(
         'La fecha de fundación debe ser en el pasado',
       );
@@ -54,7 +59,12 @@ export class AerolineaService {
     const today = new Date();
     const foundationDate = new Date(aerolinea.fechaFundacion);
 
-    if (foundationDate > today) {
+    // Set time to midnight for both dates to compare just the dates
+    today.setHours(0, 0, 0, 0);
+    foundationDate.setHours(0, 0, 0, 0);
+
+    // Ensure date is in the past by directly comparing
+    if (foundationDate.getTime() > today.getTime()) {
       throw new BadRequestException(
         'La fecha de fundación debe ser en el pasado',
       );

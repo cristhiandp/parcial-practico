@@ -93,10 +93,14 @@ describe('AerolineaService', () => {
     const aerolinea = new Aerolinea();
     aerolinea.nombre = 'Nueva Aerolinea';
     aerolinea.descripcion = 'Nueva Descripción';
-    aerolinea.fechaFundacion = new Date('2025-01-01');
+    // Set a date clearly in the future
+    aerolinea.fechaFundacion = new Date();
+    aerolinea.fechaFundacion.setFullYear(
+      aerolinea.fechaFundacion.getFullYear() + 10,
+    );
     aerolinea.paginaWeb = 'www.nueva.com';
 
-    await expect(() => service.create(aerolinea)).rejects.toThrow(
+    await expect(service.create(aerolinea)).rejects.toThrow(
       BadRequestException,
     );
   });
