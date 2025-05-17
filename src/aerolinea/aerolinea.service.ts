@@ -51,26 +51,7 @@ export class AerolineaService {
       );
     }
 
-    let aeropuertosAsociados: Aeropuerto[] = [];
-
-    if (aerolinea.aeropuertos?.length) {
-      console.log('**** 2.2');
-      aeropuertosAsociados = await this.aeropuertoService.findAllByIds(
-        aerolinea.aeropuertos,
-      );
-      console.log('**** 2.3');
-    }
-
-    console.log('**** 3');
-
-    const aerolineaActualizada = {
-      ...aerolinea,
-      aeropuertos: aeropuertosAsociados,
-    };
-
-    console.log('**** 4');
-
-    return this.aerolineaRepository.save(aerolineaActualizada);
+    return this.aerolineaRepository.save(aerolinea);
   }
 
   async update(
@@ -93,18 +74,9 @@ export class AerolineaService {
       }
     }
 
-    let aeropuertosAsociados = aerolineaExistente.aeropuertos;
-
-    if (aerolinea.aeropuertos?.length) {
-      aeropuertosAsociados = await this.aeropuertoService.findAllByIds(
-        aerolinea.aeropuertos,
-      );
-    }
-
     const aerolineaActualizada = {
       ...aerolineaExistente,
       ...aerolinea,
-      aeropuertos: aeropuertosAsociados,
       id,
     };
 

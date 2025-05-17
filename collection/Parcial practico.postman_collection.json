@@ -11,6 +11,18 @@
 			"item": [
 				{
 					"name": "Obtener aerolineas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -93,7 +105,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"nombre\": \"nombre3\",\n  \"descripcion\": \"Esta es una descripcion 1\",\n  \"fechaFundacion\": \"2013-06-15\",\n  \"paginaWeb\": \"https://www.fetch.com\"\n}",
+							"raw": "{\n  \"nombre\": \"nombre2\",\n  \"descripcion\": \"Esta es una descripcion 1\",\n  \"fechaFundacion\": \"2013-06-15\",\n  \"paginaWeb\": \"https://www.fetch.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -237,6 +249,28 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Borrar aeropuerto (incorrecto)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"nombre3\",\n  \"descripcion\": \"Esta es una descripcion 1\",\n  \"fechaFundacion\": \"2005-06-15\",\n  \"paginaWeb\": \"https://www.fetch.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/airlines/{{$randomUUID}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines",
+								"{{$randomUUID}}"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -245,6 +279,29 @@
 			"item": [
 				{
 					"name": "Obtener aeropuerto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Save list of IDs to collection variable\", function () {",
+									"    const jsonData = pm.response.json();",
+									"",
+									"    if (Array.isArray(jsonData)) {",
+									"        const idList = jsonData.map(item => item.id).filter(id => id !== undefined);",
+									"        pm.collectionVariables.set(\"aeropuertosIds\", JSON.stringify(idList));",
+									"    } ",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -279,7 +336,7 @@
 					"response": []
 				},
 				{
-					"name": "Obtener aeropuerto por id Incorecto Copy",
+					"name": "Obtener aeropuerto por id Incorrecto",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -327,7 +384,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"codigo\": \"ax2\",\n  \"nombre\": \"aeropuerto 1\",\n  \"pais\": \"Colombia\",\n  \"ciudad\": \"Medellin\"\n}",
+							"raw": "{\n  \"codigo\": \"ax3\",\n  \"nombre\": \"aeropuerto 1\",\n  \"pais\": \"Colombia\",\n  \"ciudad\": \"Medellin\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -471,6 +528,275 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Borrar aeropuerto (incorrecto)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"nombre3\",\n  \"descripcion\": \"Esta es una descripcion 1\",\n  \"fechaFundacion\": \"2005-06-15\",\n  \"paginaWeb\": \"https://www.fetch.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/airports/{{$randomUUID}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airports",
+								"{{$randomUUID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Aerolinea-Aeropuerto",
+			"item": [
+				{
+					"name": "Asociar aeropuerto a aerolinea",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": \"ax81\",\n  \"nombre\": \"aeropuerto 1\",\n  \"pais\": \"Colombia\",\n  \"ciudad\": \"Medellin\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/airlines/{{aerolineaId}}/airports/{{aeropuertoId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines",
+								"{{aerolineaId}}",
+								"airports",
+								"{{aeropuertoId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Asociar aeropuerto a aerolinea (No existe)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": \"ax81\",\n  \"nombre\": \"aeropuerto 1\",\n  \"pais\": \"Colombia\",\n  \"ciudad\": \"Medellin\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/airlines/{{aerolineaId}}/airports/{{$randomUUID}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines",
+								"{{aerolineaId}}",
+								"airports",
+								"{{$randomUUID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aeropuertos de aerolinea",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": \"ax81\",\n  \"nombre\": \"aeropuerto 1\",\n  \"pais\": \"Colombia\",\n  \"ciudad\": \"Medellin\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/airlines/{{aerolineaId}}/airports",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines",
+								"{{aerolineaId}}",
+								"airports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aeropuerto de aerolinea",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": \"ax81\",\n  \"nombre\": \"aeropuerto 1\",\n  \"pais\": \"Colombia\",\n  \"ciudad\": \"Medellin\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/airlines/{{aerolineaId}}/airports/{{aeropuertoId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines",
+								"{{aerolineaId}}",
+								"airports",
+								"{{aeropuertoId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aeropuerto de aerolinea (no exista)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": \"ax81\",\n  \"nombre\": \"aeropuerto 1\",\n  \"pais\": \"Colombia\",\n  \"ciudad\": \"Medellin\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/airlines/{{aerolineaId}}/airports/{{$randomUUID}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines",
+								"{{aerolineaId}}",
+								"airports",
+								"{{$randomUUID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar aeropuertos de aerolinea",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{aeropuertosIds}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/airlines/{{aerolineaId}}/airports",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines",
+								"{{aerolineaId}}",
+								"airports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar aeropuertos de aerolinea (incorrecto)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    \"{{$randomUUID}}\",\n    \"{{$randomUUID}}\"\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/airlines/{{aerolineaId}}/airports",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines",
+								"{{aerolineaId}}",
+								"airports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar un aeropuerto de aerolinea",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{aeropuertosIds}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/airlines/{{aerolineaId}}/airports/{{aeropuertoId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines",
+								"{{aerolineaId}}",
+								"airports",
+								"{{aeropuertoId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar un aeropuerto de aerolinea (incorrecto)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{aeropuertosIds}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/airlines/{{aerolineaId}}/airports/{{$randomUUID}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines",
+								"{{aerolineaId}}",
+								"airports",
+								"{{$randomUUID}}"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
@@ -512,6 +838,10 @@
 			"key": "aeropuertoId",
 			"value": "",
 			"type": "string"
+		},
+		{
+			"key": "aeropuertosIds",
+			"value": ""
 		}
 	]
 }

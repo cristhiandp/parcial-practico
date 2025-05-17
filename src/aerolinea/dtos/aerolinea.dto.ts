@@ -24,10 +24,6 @@ export class CrearAerolineaDto {
   @IsString()
   @IsNotEmpty()
   paginaWeb: string;
-
-  @IsArray()
-  @IsString({ each: true })
-  aeropuertos: string[];
 }
 
 export class ActualizarAerolineaDto extends PartialType(CrearAerolineaDto) {}

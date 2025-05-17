@@ -19,15 +19,12 @@ export class AerolineaAeropuertoController {
     @Param('airlineId') airlineId: string,
     @Param('airportId') airportId: string,
   ) {
-    return await this.aerolineaService.addAirportToAirline(
-      airlineId,
-      airportId,
-    );
+    return this.aerolineaService.addAirportToAirline(airlineId, airportId);
   }
 
   @Get(':airlineId/airports')
   async findAirportsFromAirline(@Param('airlineId') airlineId: string) {
-    return await this.aerolineaService.findAirportsFromAirline(airlineId);
+    return this.aerolineaService.findAirportsFromAirline(airlineId);
   }
 
   @Get(':airlineId/airports/:airportId')
@@ -35,10 +32,7 @@ export class AerolineaAeropuertoController {
     @Param('airlineId') airlineId: string,
     @Param('airportId') airportId: string,
   ) {
-    return await this.aerolineaService.findAirportFromAirline(
-      airlineId,
-      airportId,
-    );
+    return this.aerolineaService.findAirportFromAirline(airlineId, airportId);
   }
 
   @Put(':airlineId/airports')
@@ -46,7 +40,7 @@ export class AerolineaAeropuertoController {
     @Param('airlineId') airlineId: string,
     @Body() airportIds: string[],
   ) {
-    return await this.aerolineaService.updateAirportsFromAirline(
+    return this.aerolineaService.updateAirportsFromAirline(
       airlineId,
       airportIds,
     );
