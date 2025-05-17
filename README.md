@@ -1,6 +1,6 @@
 ## Parcial Practico
 
-Esta es la version v1.0.0 del parcial practico
+Esta es la version v1.0.0 del parcial practico, por defecto el projecto corre en: http://localhost:3000
 
 ### Instalar dependencias
 
@@ -38,12 +38,12 @@ Dentro de la carpeta llamada collections estan los diferentes endpoints para usa
 | GET    | Obtener una aerolínea por ID                                 | Obtener aerolinea por id                 |
 | GET    | Obtener una aerolínea por un ID que no existe                | Obtener aerolinea por (id Incorrecto)    |
 | PUT    | Actualizar una aerolínea                                     | Actualizar aerolinea                     |
-| PUT    | Actualizar una aerolínea con un ID que no existe             | ❌ FALTA (puedes duplicar y usar UUID)   |
+| PUT    | Actualizar una aerolínea con un ID que no existe             | Actualizar aerolinea (incorrecta)   |
 | DELETE | Eliminar una aerolínea por su ID                             | Borrar aeropuerto *(renombrar)*          |
 | DELETE | Eliminar una aerolínea con un ID que no existe              | Borrar aeropuerto (incorrecto) *(idem)*  |
 
 
-#### 🛫 Aeropuertos
+####  🛫 Aeropuertos
 
 | Método | Caso requerido                                               | Nombre en Postman                            |
 |--------|--------------------------------------------------------------|----------------------------------------------|
@@ -53,11 +53,11 @@ Dentro de la carpeta llamada collections estan los diferentes endpoints para usa
 | GET    | Obtener un aeropuerto por ID                                 | Obtener aeropuerto por id                    |
 | GET    | Obtener un aeropuerto por un ID que no existe                | Obtener aeropuerto por id Incorrecto         |
 | PUT    | Actualizar un aeropuerto                                     | Actualizar aeropuerto                         |
-| PUT    | Actualizar un aeropuerto con un ID que no existe             | ❌ FALTA (puedes duplicar y usar UUID)        |
+| PUT    | Actualizar un aeropuerto con un ID que no existe             | Actualizar aeropuerto (incorrecto)        |
 | DELETE | Eliminar un aeropuerto por ID                                | Borrar aeropuerto                             |
 | DELETE | Eliminar un aeropuerto con un ID que no existe               | Borrar aeropuerto (incorrecto)               |
 
-#### 🔁 Aerolíneas - Aeropuertos
+####  🔁 Aerolíneas - Aeropuertos
 
 | Método | Caso requerido                                               | Nombre en Postman                                   |
 |--------|--------------------------------------------------------------|-----------------------------------------------------|
