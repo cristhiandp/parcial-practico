@@ -38,7 +38,7 @@ Dentro de la carpeta llamada collections estan los diferentes endpoints para usa
 | GET    | Obtener una aerolínea por ID                                 | Obtener aerolinea por id                 |
 | GET    | Obtener una aerolínea por un ID que no existe                | Obtener aerolinea por (id Incorrecto)    |
 | PUT    | Actualizar una aerolínea                                     | Actualizar aerolinea                     |
-| PUT    | Actualizar una aerolínea con un ID que no existe             | ❌ FALTA (puedes duplicar y usar UUID)   |
+| PUT    | Actualizar una aerolínea con un ID que no existe             | Actualizar aerolinea (incorrecta)   |
 | DELETE | Eliminar una aerolínea por su ID                             | Borrar aeropuerto *(renombrar)*          |
 | DELETE | Eliminar una aerolínea con un ID que no existe              | Borrar aeropuerto (incorrecto) *(idem)*  |
 
