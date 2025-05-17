@@ -43,7 +43,7 @@ Dentro de la carpeta llamada collections estan los diferentes endpoints para usa
 | DELETE | Eliminar una aerolínea con un ID que no existe              | Borrar aeropuerto (incorrecto) *(idem)*  |
 
 
-#### 🛫 Aeropuertos
+####  🛫 Aeropuertos
 
 | Método | Caso requerido                                               | Nombre en Postman                            |
 |--------|--------------------------------------------------------------|----------------------------------------------|
@@ -57,7 +57,7 @@ Dentro de la carpeta llamada collections estan los diferentes endpoints para usa
 | DELETE | Eliminar un aeropuerto por ID                                | Borrar aeropuerto                             |
 | DELETE | Eliminar un aeropuerto con un ID que no existe               | Borrar aeropuerto (incorrecto)               |
 
-#### 🔁 Aerolíneas - Aeropuertos
+####  🔁 Aerolíneas - Aeropuertos
 
 | Método | Caso requerido                                               | Nombre en Postman                                   |
 |--------|--------------------------------------------------------------|-----------------------------------------------------|
