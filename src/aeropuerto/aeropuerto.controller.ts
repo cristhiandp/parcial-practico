@@ -9,7 +9,7 @@ import {
   HttpCode,
 } from '@nestjs/common';
 import { AeropuertoService } from './aeropuerto.service';
-import { Aeropuerto } from './entities/aeropuerto.entity';
+import { ActualizarAeropuertoDto, CrearAeropuertoDto } from './dtos';
 
 @Controller('airports')
 export class AeropuertoController {
@@ -17,7 +17,7 @@ export class AeropuertoController {
 
   @Get()
   async findAll() {
-    return await this.aeropuertoService.findAll();
+    return this.aeropuertoService.findAll();
   }
 
   @Get(':id')
@@ -26,12 +26,15 @@ export class AeropuertoController {
   }
 
   @Post()
-  async create(@Body() aeropuerto: Aeropuerto) {
+  async create(@Body() aeropuerto: CrearAeropuertoDto) {
     return await this.aeropuertoService.create(aeropuerto);
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() aeropuerto: Aeropuerto) {
+  async update(
+    @Param('id') id: string,
+    @Body() aeropuerto: ActualizarAeropuertoDto,
+  ) {
     return await this.aeropuertoService.update(id, aeropuerto);
   }
 

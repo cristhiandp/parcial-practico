@@ -9,7 +9,7 @@ import {
   HttpCode,
 } from '@nestjs/common';
 import { AerolineaService } from './aerolinea.service';
-import { Aerolinea } from './entities/aerolinea.entity';
+import { ActualizarAerolineaDto, CrearAerolineaDto } from './dtos';
 
 @Controller('airlines')
 export class AerolineaController {
@@ -26,13 +26,16 @@ export class AerolineaController {
   }
 
   @Post()
-  async create(@Body() aerolinea: Aerolinea) {
+  async create(@Body() aerolinea: CrearAerolineaDto) {
     return await this.aerolineaService.create(aerolinea);
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() aerolinea: Aerolinea) {
-    return await this.aerolineaService.update(id, aerolinea);
+  async update(
+    @Param('id') id: string,
+    @Body() aerolinea: ActualizarAerolineaDto,
+  ) {
+    return this.aerolineaService.update(id, aerolinea);
   }
 
   @Delete(':id')

@@ -1,5 +1,4 @@
 import { Column, Entity, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
-import { IsString, Length } from 'class-validator';
 import { Aerolinea } from '../../aerolinea/entities/aerolinea.entity';
 
 @Entity('aeropuerto')
@@ -11,10 +10,6 @@ class Aeropuerto {
   nombre: string;
 
   @Column({ type: 'varchar', length: 3, unique: true })
-  @IsString()
-  @Length(3, 3, {
-    message: 'El código del aeropuerto debe tener exactamente 3 caracteres',
-  })
   codigo: string;
 
   @Column({ type: 'varchar', length: 128 })
