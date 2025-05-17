@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "eeac5509-4e1e-423e-993b-3e47994dbe70",
-		"name": "Parcial practico",
+		"_postman_id": "2fec8461-7ca6-4d70-8a59-1aca47f250bc",
+		"name": "parcial_practico",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "44646279"
 	},
@@ -196,6 +196,33 @@
 							"path": [
 								"airlines",
 								"{{aerolineaId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar aerolinea (incorrecta)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"descripcion\": \"Esta es una descripcion 3\",\n  \"fechaFundacion\": \"2010-06-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/airlines/{{$randomUUID}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airlines",
+								"{{$randomUUID}}"
 							]
 						}
 					},
@@ -475,6 +502,33 @@
 							"path": [
 								"airports",
 								"{{aeropuertoId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar aeropuerto (incorrecto)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": \"Zx2\",\n  \"descripcion\": \"Esta es una descripcion 3\",\n  \"fechaFundacion\": \"2010-06-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/airports/{{$randomUUID}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"airports",
+								"{{$randomUUID}}"
 							]
 						}
 					},
