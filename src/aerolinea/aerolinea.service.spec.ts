@@ -6,21 +6,24 @@ import { Aerolinea } from './entities/aerolinea.entity';
 import { Aeropuerto } from '../aeropuerto/entities/aeropuerto.entity';
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
+import { AeropuertoService } from '../aeropuerto/aeropuerto.service';
 
 describe('AerolineaService', () => {
   let service: AerolineaService;
   let repository: Repository<Aerolinea>;
   let aeropuertoRepository: Repository<Aeropuerto>;
+  let aeropuertoService: AeropuertoService;
   let aerolineaList: Aerolinea[];
   let aeropuertoList: Aeropuerto[];
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [...TypeOrmTestingConfig()],
-      providers: [AerolineaService],
+      providers: [AerolineaService, AeropuertoService],
     }).compile();
 
     service = module.get<AerolineaService>(AerolineaService);
+    aeropuertoService = module.get<AeropuertoService>(AeropuertoService);
     repository = module.get<Repository<Aerolinea>>(
       getRepositoryToken(Aerolinea),
     );

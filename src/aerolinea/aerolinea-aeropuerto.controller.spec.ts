@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
 import { Aerolinea } from './entities/aerolinea.entity';
+import { AeropuertoService } from '../aeropuerto/aeropuerto.service';
 
 describe('AerolineaAeropuertoController', () => {
   let controller: AerolineaAeropuertoController;
@@ -17,7 +18,7 @@ describe('AerolineaAeropuertoController', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [...TypeOrmTestingConfig()],
       controllers: [AerolineaAeropuertoController],
-      providers: [AerolineaService],
+      providers: [AerolineaService, AeropuertoService],
     }).compile();
 
     controller = module.get<AerolineaAeropuertoController>(
