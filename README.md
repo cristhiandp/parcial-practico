@@ -1,6 +1,6 @@
 ## Parcial Practico
 
-Esta es la version v1.0.0 del parcial practico
+Esta es la version v1.0.0 del parcial practico, por defecto el projecto corre en: http://localhost:3000
 
 ### Instalar dependencias
 
